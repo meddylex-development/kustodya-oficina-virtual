@@ -1,0 +1,45 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a *ngIf="accessIconToggleSidebar" (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <!-- <a class="logo" href="#" (click)="navigateHome()">Steem-Cell-<span>admin</span></a> -->
+    <a *ngIf="accessLogo" class="logo" href="#">
+      <img [src]="urlLogo" alt="Stem Cell Logo App" style="width: 10rem;">
+    </a>
+  </div>
+  <nb-select *ngIf="accessModThemeSelect" [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  </nb-select>
+  <ngx-layout-direction-switcher *ngIf="accessModDirectionSwitcher" class="direction-switcher"></ngx-layout-direction-switcher>
+</div>
+
+
+
+<div class="header-container">
+  <nb-actions size="small">
+
+    <nb-action>
+      <span class="header-container cursor-pointer" nbTooltip="Lenguaje {{ language }}" nbTooltipPlacement="bottom">
+        <img src="../../../../assets/icons/flags/flag-{{ language.toLowerCase() }}.png" width="20" height="20" alt="language-{{ language }}">
+      </span>     
+    </nb-action>
+
+    <nb-action *ngIf="accessModSearch" class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action>
+    
+    <nb-action *ngIf="accessModEmail" class="control-item" icon="email-outline"></nb-action>
+    <nb-action *ngIf="accessModNotifications" class="control-item" icon="bell-outline"></nb-action>
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']">
+      <nb-user
+        *ngIf="accessModPictureProfile" 
+        nbContextMenuTag="user-menu-header"
+        [nbContextMenu]="userMenu"
+        [onlyPicture]="userPictureOnly"
+        [name]="user?.name"
+        [picture]="user?.picture">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

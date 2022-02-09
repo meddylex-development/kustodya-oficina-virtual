@@ -1,0 +1,88 @@
+<nb-card>
+    <nb-card-header style="display: flex; justify-content: space-between;">
+        {{ DATA_LANG?.mdlUpdateTitle?.text }}
+        <span (click)="fnCloseModal()" nbTooltip="Cerrar">
+            <i class="fas fa-times cursor-pointer text-danger"></i>
+        </span>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row ml-0 mr-0">
+          <form (ngSubmit)="fnEditData(editDocumentTypeForm)" style="width: 350px;" #editDocumentTypeForm="ngForm" aria-labelledby="title">
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="input-documentTypeName">{{ DATA_LANG?.mdlLblAddName?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>                                         
+                <input 
+                  nbInput 
+                  fullWidth 
+                  #documentTypeName="ngModel"
+                  [(ngModel)]="documentType.name" 
+                  [ngModelOptions]="{standalone: true}"
+                  [status]="'info'"
+                  [required]="true"
+                  name="documentTypeName" 
+                  id="input-documentTypeName" 
+                  autofocus 
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ DATA_LANG?.phlInputdAdd?.text }}"
+                  style="height: 50px;">
+              </div>
+            </div>
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="select-documentTypeState">{{ DATA_LANG?.mdlLblAddStatusDocumentType?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                <ng-select 
+                  [items]="collectionStatesList" 
+                  bindLabel="name"
+                  id="select-documentTypeState" 
+                  name="documentTypeState" 
+                  #documentTypeState="ngModel"
+                  placeholder="Seleccione el estado" 
+                  [(ngModel)]="documentType.state" 
+                  (change)="fnSetStatusDocumentType($event);"
+                  required 
+                  [disabled]="false" 
+                  [clearable]="false">
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="input-documentTypeDescription">{{ DATA_LANG?.mdlLblAddDescription?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                  <textarea 
+                      #documentTypeDescription="ngModel"
+                      [(ngModel)]="documentType.description" 
+                      [ngModelOptions]="{standalone: true}"
+                      [status]="'info'"
+                      class="form-control" 
+                      name="documentTypeDescription" 
+                      id="input-documentTypeDescription" 
+                      nbInput 
+                      fullWidth 
+                      placeholder="{{ DATA_LANG?.phlInputdAddDesc?.text }}">
+                  </textarea>
+              </div>
+            </div>
+            <br>
+            <button 
+                nbButton 
+                fullWidth 
+                type="submit"
+                [class.btn-pulse]="submitted"
+                style="background-color: #3366ff; border-color: #3366ff; color: white;">
+                {{ DATA_LANG_GENERAL?.lblButtonSave?.text }}
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button 
+                nbButton 
+                fullWidth
+                status="info" 
+                style="background-color: gray; border-color: gray; color: white;"
+                (click)="fnCancelAddData()">
+                {{ DATA_LANG_GENERAL?.lblButtonCancel?.text }}
+            </button>
+          </form>
+        </div>
+    </nb-card-body>    
+</nb-card>

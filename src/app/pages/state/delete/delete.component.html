@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-header style="display: flex; justify-content: space-between;">
+        {{ DATA_LANG?.mdlDeleteTitle?.text }}
+        <span (click)="fnCloseModal()" nbTooltip="Cerrar">
+            <i class="fas fa-times cursor-pointer text-danger"></i>
+        </span>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row ml-0 mr-0">
+            <form (ngSubmit)="fnDeleteData(deleteStateForm)" style="width: 350px;" #deleteStateForm="ngForm" aria-labelledby="title">
+                <div class="col-12 pl-0 pr-0">
+                    <p>{{ DATA_LANG?.mdlLblDeleteStatus?.text }}<strong>{{ state?.name }}</strong>?</p>
+                </div>
+                <button 
+                    nbButton 
+                    fullWidth 
+                    type="submit" 
+                    [class.btn-pulse]="submitted" 
+                    status="info">
+                    {{ DATA_LANG_GENERAL?.lblButtonDelete?.text }}
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button 
+                    nbButton 
+                    fullWidth
+                    status="info" 
+                    style="background-color: gray; border-color: gray; color: white;"
+                    (click)="fnCancelDeleteData()">
+                    {{ DATA_LANG_GENERAL?.lblButtonCancel?.text }}
+                </button>
+            </form> 
+        </div>
+    </nb-card-body>
+</nb-card>

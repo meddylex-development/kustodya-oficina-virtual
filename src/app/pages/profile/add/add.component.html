@@ -1,0 +1,88 @@
+<nb-card>
+  <nb-card-header style="display: flex; justify-content: space-between;">
+      {{ DATA_LANG?.mdlAddTitle?.text }}
+      <span (click)="fnCloseModal()" nbTooltip="Cerrar">
+          <i class="fas fa-times cursor-pointer text-danger"></i>
+      </span>
+  </nb-card-header>
+  <nb-card-body>
+      <div class="row ml-0 mr-0">
+          <form (ngSubmit)="fnAddData(addStateForm)" style="width: 350px;" #addStateForm="ngForm" aria-labelledby="title">
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="input-profileName">{{ DATA_LANG?.mdlLblAddStatusName?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>                                         
+                <input 
+                  nbInput 
+                  fullWidth 
+                  #profileName="ngModel"
+                  [(ngModel)]="profile.name" 
+                  [ngModelOptions]="{standalone: true}"
+                  [status]="'info'"
+                  [required]="true"
+                  name="profileName" 
+                  id="input-profileName" 
+                  autofocus 
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ DATA_LANG?.phlInputdAddStatus?.text }}"
+                  style="height: 50px;">
+              </div>
+            </div>
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="select-profileState">{{ DATA_LANG?.mdlLblAddStatusProfile?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                <ng-select 
+                  [items]="collectionStatesList" 
+                  bindValue="idState"
+                  bindLabel="name"
+                  id="select-profileState" 
+                  name="profileState" 
+                  #profileState="ngModel"
+                  placeholder="Seleccione el estado" 
+                  [(ngModel)]="profile.state" 
+                  (change)="fnSetStatusProfile($event);"
+                  required 
+                  [disabled]="false" 
+                  [clearable]="false">
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="input-profileDescription">{{ DATA_LANG?.mdlLblAddStatusDescription?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                  <textarea 
+                      #profileDescription="ngModel"
+                      [(ngModel)]="profile.description" 
+                      [ngModelOptions]="{standalone: true}"
+                      [status]="'info'"
+                      class="form-control" 
+                      name="profileDescription" 
+                      id="input-profileDescription" 
+                      nbInput 
+                      fullWidth 
+                      placeholder="{{ DATA_LANG?.phlInputdAddStatusDesc?.text }}">
+                  </textarea>
+              </div>
+            </div>
+            <br>
+            <button 
+                nbButton 
+                fullWidth 
+                type="submit"
+                [class.btn-pulse]="submitted"
+                style="background-color: #3366ff; border-color: #3366ff; color: white;">
+                {{ DATA_LANG_GENERAL?.lblButtonSave?.text }}
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button 
+                nbButton 
+                fullWidth
+                status="info" 
+                style="background-color: gray; border-color: gray; color: white;"
+                (click)="fnCancelAddData()">
+                {{ DATA_LANG_GENERAL?.lblButtonCancel?.text }}
+            </button>
+          </form>
+        </div>
+  </nb-card-body>
+</nb-card>

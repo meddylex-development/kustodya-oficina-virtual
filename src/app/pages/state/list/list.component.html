@@ -1,0 +1,107 @@
+<nb-card class="content-card" [size]="'large'">
+    <nb-card-body>
+        <h3>
+            {{ DATA_LANG?.lblTitle?.text }}
+            <span [nbTooltip]="DATA_LANG_GENERAL?.lblHelpTooltip?.text" (click)="showModalHelp(DATA_LANG?.nameModule.text, '', DATA_LANG?.mdlHelpTitle?.text , DATA_LANG?.mdlHelpTitleDescription?.text)">
+                <i class="far fa-question-circle cursor-pointer text-end text-primary icon-help-title"></i>
+            </span>
+        </h3>
+        <p>
+            {{ DATA_LANG?.lblDescription?.text }}
+        </p>
+        <div class="mb-3 text-right">
+            <button 
+                nbTooltip="{{ DATA_LANG?.lblAddStateTooltip?.text }}"
+                nbButton 
+                status="primary"
+                (click)="showModalAdd(null)">
+                <i class="fas fa-plus-circle cursor-pointer"></i>
+            </button>
+            &nbsp;
+            <button 
+                nbButton 
+                nbTooltip="{{ DATA_LANG?.lblDeleteAllStateTooltip?.text }}"
+                (click)="showModalDeleteAll(null)" 
+                class="btn-delete-all">
+                <i class="fas fa-trash-alt cursor-pointer"></i>
+            </button>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        {{ DATA_LANG?.lblColName?.text }}&nbsp;
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblHelpTooltip?.text }}" (click)="showModalHelp(DATA_LANG?.nameModule.text, 'name', DATA_LANG?.mdlHelpTableColName.text, DATA_LANG?.mdlHelpTableColNameDescription.text)">
+                            <i class="far fa-question-circle cursor-pointer text-end text-primary"></i>
+                        </span>
+                        <span nbTooltip="{{ (typeSort[0]['state'] == 'DEFAULT') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDefault.text : (typeSort[0]['state'] == 'DESC') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDesc.text : DATA_LANG_GENERAL?.lblHelpTooltipTableSortAsc.text }}" class="float-right" (click)="fnOrderList('name', collectionData, typeSort, 0)">
+                            <i class="fas cursor-pointer text-end" [ngClass]="{'fa-sort': typeSort[0]['state'] == 'DEFAULT', 'fa-sort-up': typeSort[0]['state'] == 'ASC', 'fa-sort-down': typeSort[0]['state'] == 'DESC'}"></i>
+                        </span>
+                    </th>
+                    <th>
+                        {{ DATA_LANG?.lblColDescription?.text }}&nbsp;
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblHelpTooltip?.text }}" (click)="showModalHelp(DATA_LANG?.nameModule.text, 'description', DATA_LANG?.mdlHelpTableColDescription.text, DATA_LANG?.mdlHelpTableColDescriptionDescription.text)">
+                            <i class="far fa-question-circle cursor-pointer text-end text-primary"></i>
+                        </span>
+                        <span nbTooltip="{{ (typeSort[1]['state'] == 'DEFAULT') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDefault.text : (typeSort[1]['state'] == 'DESC') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDesc.text : DATA_LANG_GENERAL?.lblHelpTooltipTableSortAsc.text }}" class="float-right" (click)="fnOrderList('description', collectionData, typeSort, 1)">
+                            <i class="fas cursor-pointer text-end" [ngClass]="{'fa-sort': typeSort[1]['state'] == 'DEFAULT', 'fa-sort-up': typeSort[1]['state'] == 'ASC', 'fa-sort-down': typeSort[1]['state'] == 'DESC'}"></i>
+                        </span>
+                    </th>
+                    <th>
+                        {{ DATA_LANG?.lblColDateCreated?.text }}&nbsp;
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblHelpTooltip?.text }}" (click)="showModalHelp(DATA_LANG?.nameModule.text, 'dateCreated', DATA_LANG?.mdlHelpTableColDateCreated.text, DATA_LANG?.mdlHelpTableColDateCreatedDescription.text)">
+                            <i class="far fa-question-circle cursor-pointer text-end text-primary"></i>
+                        </span>
+                        <span nbTooltip="{{ (typeSort[2]['state'] == 'DEFAULT') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDefault.text : (typeSort[2]['state'] == 'DESC') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDesc.text : DATA_LANG_GENERAL?.lblHelpTooltipTableSortAsc.text }}" class="float-right" (click)="fnOrderList('dateCreated', collectionData, typeSort, 2)">
+                            <i class="fas cursor-pointer text-end" [ngClass]="{'fa-sort': typeSort[2]['state'] == 'DEFAULT', 'fa-sort-up': typeSort[2]['state'] == 'ASC', 'fa-sort-down': typeSort[2]['state'] == 'DESC'}"></i>
+                        </span>
+                    </th>
+                    <th>
+                        {{ DATA_LANG?.lblColDateUpdated?.text }}&nbsp;
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblHelpTooltip?.text }}" (click)="showModalHelp(DATA_LANG?.nameModule.text, 'dateUpdated', DATA_LANG?.mdlHelpTableColDateUpdated.text, DATA_LANG?.mdlHelpTableColDateUpdatedDescription.text)">
+                            <i class="far fa-question-circle cursor-pointer text-end text-primary"></i>
+                        </span>
+                        <span nbTooltip="{{ (typeSort[3]['state'] == 'DEFAULT') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDefault.text : (typeSort[3]['state'] == 'DESC') ? DATA_LANG_GENERAL?.lblHelpTooltipTableSortDesc.text : DATA_LANG_GENERAL?.lblHelpTooltipTableSortAsc.text }}" class="float-right" (click)="fnOrderList('dateUpdated', collectionData, typeSort, 3)">
+                            <i class="fas cursor-pointer text-end" [ngClass]="{'fa-sort': typeSort[3]['state'] == 'DEFAULT', 'fa-sort-up': typeSort[3]['state'] == 'ASC', 'fa-sort-down': typeSort[3]['state'] == 'DESC'}"></i>
+                        </span>
+                    </th>
+                    <th class="thead-column-action">
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblHelpTooltip?.text }}" (click)="showModalHelp(DATA_LANG?.nameModule.text, 'edit', DATA_LANG?.mdlHelpTableColEditAction.text, DATA_LANG?.mdlHelpTableColEditActionDescription.text)">
+                            <i class="far fa-question-circle cursor-pointer text-end text-primary icon-help-thead"></i>
+                        </span>
+                    </th>
+                    <th class="thead-column-action">
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblHelpTooltip?.text }}" (click)="showModalHelp(DATA_LANG?.nameModule.text, 'delete', DATA_LANG?.mdlHelpTableColDeleteAction.text, DATA_LANG?.mdlHelpTableColDeleteActionDescription.text)">
+                            <i class="far fa-question-circle cursor-pointer text-end text-primary icon-help-thead"></i>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of collectionData | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index;">
+                    <td>{{ item?.name | titlecase }}</td>
+                    <td>{{ item?.description }}</td>
+                    <td>{{ item?.dateCreated | date:"medium" }}</td>
+                    <td>{{ item?.dateUpdated | date:"medium" }}</td>
+                    <td>
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblEditTooltip?.text }}" (click)="showModalEdit(item)">
+                            <i class="fas fa-pencil-alt cursor-pointer text-warning"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <span nbTooltip="{{ DATA_LANG_GENERAL?.lblDeleteTooltip?.text }}" (click)="showModalDelete(item)">
+                            <i class="fas fa-trash-alt cursor-pointer text-danger"></i>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content-pagination">
+            <pagination-controls 
+                (pageChange)="currentPage = $event" 
+                previousLabel="{{ DATA_LANG_GENERAL?.lblPreviousPagination?.text }}"
+                nextLabel="{{ DATA_LANG_GENERAL?.lblNextPagination?.text }}"
+            ></pagination-controls>
+        </div>
+    </nb-card-body>
+</nb-card>
