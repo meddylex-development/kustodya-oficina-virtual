@@ -14,7 +14,8 @@ import {
 } from '@nebular/theme';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-
+// import { RecaptchaModule } from "ng-recaptcha";
+// import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 // import { NgxLoginComponent } from './login/login.component'; // <---
 // import { NgxRegisterComponent } from './sign-up/sign-up.component'; // <---
 

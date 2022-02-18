@@ -5,11 +5,9 @@ import { Observable, Observer } from 'rxjs';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 
-import { HelpComponent } from '../../components/modals/help/help.component'
-
-
+import { HelpComponent } from '../../components/modals/help/help.component';
 import { environment } from '../../../../environments/environment';
-// import * as moment from 'moment';
+import * as moment from 'moment';
 /* ************+ Import module auth ************ */
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 // declare var $: any;
@@ -224,28 +222,6 @@ export class UtilitiesService {
     }
   }
 
-  // fnSearchDate(collection, date_one, date_two, field) {
-  //   const results = [];
-  //   collection.forEach(function (obj, key) {
-  //     const date_collection = moment(obj[field]).valueOf();
-  //     if (date_collection >= date_one && date_collection <= date_two) {
-  //       results.push(obj);
-  //     }
-  //   });
-  //   return results;
-  // }
-
-  // fnSearchDateCallback(collection, date_one, date_two, field, callback) {
-  //   const results = [];
-  //   collection.forEach(function (obj, key) {
-  //     const date_collection = moment(obj[field]).valueOf();
-  //     if (date_collection >= date_one && date_collection <= date_two) {
-  //       results.push(obj);
-  //     }
-  //   });
-  //   callback(results);
-  // }
-
   fnGetCurrentTokenSession(returnObserver) {
     this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       if (token.isValid()) {
@@ -297,33 +273,6 @@ export class UtilitiesService {
       { position, status, icon });
   }
 
-  // postFile(fileToUpload: File): Observable<boolean> {
-  //   const endpoint = 'your-destination-url';
-  //   const formData: FormData = new FormData();
-  //   formData.append('fileKey', fileToUpload, fileToUpload.name);
-  //   return this.httpClient
-  //     .post(endpoint, formData, { headers: yourHeadersConfig })
-  //     .map(() => { return true; })
-  //     .catch((e) => this.handleError(e));
-  // }
-
-  // fnSetDefineTokenAuthorization(token) {
-  //   this.data_headers_request = new HttpHeaders().set('Authorization', token);
-  //   return this.data_headers_request;
-  // }
-
-  // fnHttSetUploadFile(guid_user: any, fileToUpload: File, id_version: any, end_point_url: any, parameter?): Observable<any> {
-  //   const headers = this.fnSetDefineTokenAuthorization(guid_user);
-  //   const formData: FormData = new FormData();
-  //   formData.append('file', fileToUpload);
-  //   this.urlSetUploadFile = (parameter) ? end_point_url + '?' + parameter + '=' + id_version : end_point_url;
-  //   return this.http.post(this.fnGetHost() + this.urlSetUploadFile, formData, {
-  //     observe: 'response',
-  //     headers: headers,
-  //     reportProgress: true,
-  //   });
-  // }
-
   formatMoney(amount, decimalCount = 2, decimal = '.', thousands = ',') {
     try {
       decimalCount = Math.abs(decimalCount);
@@ -344,66 +293,6 @@ export class UtilitiesService {
     const new_value_percentage = value_percentage.toFixed(num_decimals) + '%';
     return new_value_percentage;
   }
-
-
-
-  // fnHttpTestValidEmailMock(email): Observable<any> {
-  //   // const headers = this.fnSetDefineTokenAuthorization(guid_user);
-  //   const urlSetDataNewCategory = '/api/Account/ValidateEmail?email=' + email;
-  //   // return this.http.get('https://prozesslaw.azurewebsites.net/' + urlSetDataNewCategory,
-  //   return this.http.get(this.fnGetHost() + urlSetDataNewCategory,
-  //     {
-  //       observe: 'response',
-  //       // headers: headers,
-  //       reportProgress: true,
-  //     });
-  // }
-
-  // fnHttpValidEmailMock(email): Observable<any> {
-  //   // const headers = this.fnSetDefineTokenAuthorization(guid_user);
-  //   const urlSetDataValidEmailService = '/api/Account/ValidateEmail2';
-  //   const obj_send = {
-  //     'emailString': email,
-  //   };
-  //   // return this.http.post('https://prozesslaw.azurewebsites.net/' + urlSetDataValidEmailService, {},
-  //   return this.http.post(this.fnGetHost() + urlSetDataValidEmailService, obj_send,
-  //     {
-  //       observe: 'response',
-  //       // headers: headers,
-  //       reportProgress: true,
-  //     });
-  // }
-
-  // fnHttpGetEntitiesByUser(guid_user: any, user_id: number): Observable<any> {
-  //   // const headers = this.fnSetDefineTokenAuthorization('Bearer ' + guid_user);
-  //   const urlSetDataValidEmailService = '/api/Account/GetEmpresasUsuario';
-  //   return this.http.get(this.fnGetHost() + urlSetDataValidEmailService,
-  //     {
-  //       observe: 'response',
-  //       // headers: headers,
-  //       reportProgress: true,
-  //     });
-  // }
-
-  // fnHttSetUploadFileDoctors(guid_user: any, fileToUpload: File, end_point_url: any, parameter?): Observable<any> {
-  //   // const headers = this.fnSetDefineTokenAuthorization(guid_user);
-  //   // const formData: FormData = new FormData();
-  //   // formData.append('file', fileToUpload);
-  //   // formData.append('DocumentoId', '123');
-  //   // formData.append('TipoArchivoId', '567');
-  //   // this.urlSetUploadFile = (parameter) ? end_point_url + '?' + parameter + '=' + id_version : end_point_url;
-  //   // let headers = new HttpHeaders({
-  //   //   'Content-Type': 'text/csv',
-  //   //  });
-
-  //   this.headers = new HttpHeaders().set('Content-Type', 'text/csv');
-  //   this.urlSetUploadFile = end_point_url;
-  //   return this.http.post(this.url_host_medicos + this.urlSetUploadFile, fileToUpload, {
-  //       observe: 'events',
-  //       headers: this.headers,
-  //       reportProgress: true,
-  //     });
-  // }
 
   fnSpliceString(string_name, char_splice) {
     const data_splice = string_name.split(char_splice);
@@ -548,25 +437,6 @@ export class UtilitiesService {
     });
   }
 
-  fnSortArrayByProperty(collection, field) {
-    return new Promise((resolve, reject) => {
-      // let OrderedCollection = collection.sort(function(a, b) {
-      //   let fieldA = a[field];
-      //   console.log('fieldA: ', fieldA);
-      //   let fieldB = b[field];
-      //   console.log('fieldB: ', fieldB);
-      //   let result = fieldA - fieldB;
-      //   console.log('result: ', result);
-      //   return result;
-      // });
-      // if (OrderedCollection.length > 0) {
-      //   resolve(OrderedCollection);
-      // } else {
-      //   reject(false);
-      // }
-    });
-  }
-
   compareValues(key, order = 'ASC') {
     return function innerSort(a, b) {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
@@ -589,6 +459,36 @@ export class UtilitiesService {
         (order === 'DESC') ? (comparison * -1) : comparison
       );
     };
+  }
+
+  
+  getDateNow = (format = '') => {
+    let formatDate = (format) ? format : 'DD/MM/YYYY HH:mm';
+    return moment().format(formatDate);
+  }
+
+  getDateNowValueOf = () => {
+      return moment().valueOf();
+  }
+  
+  getDateValueOf = (date_user) => {
+      let dateConvert = (date_user) ? date_user : '';
+      return moment(dateConvert).valueOf();
+  }
+
+  
+  getDateFormat = (timestamp = '', format = '') => {
+      // 'DD/MM/YYYY'
+      // 'DD/MM/YYYY HH:mm'
+      let formatDate = (format) ? format : 'DD/MM/YYYY';
+      return moment(timestamp).format(formatDate);
+  }
+
+  fnRedirectPage(time: number) {
+    // this.submitted = true;
+    setTimeout(() => {
+      this.router.navigate(['auth/login']);
+    }, time);  // 5s
   }
 
 }

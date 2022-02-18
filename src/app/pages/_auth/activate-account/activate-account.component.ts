@@ -17,7 +17,7 @@ import {
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { UtilitiesService } from '../../../shared/api/services/utilities.service';
-
+import { UserService } from '../../../shared/api/services/user.service';
 
 
 @Component({
@@ -37,6 +37,7 @@ export class ActivateAccountComponent extends NbResetPasswordComponent implement
 
   constructor(
     private utilitiesService: UtilitiesService,
+    private userService: UserService,
     public service: NbAuthService,
     @Inject(NB_AUTH_OPTIONS) options: {},
     public cd: ChangeDetectorRef,
@@ -46,19 +47,35 @@ export class ActivateAccountComponent extends NbResetPasswordComponent implement
   }
 
   ngOnInit() {
-    
+    console.log("Holaaaa");
+    this.activatedRoute.queryParams.subscribe((params) => {
+      console.log('params: ', params);
+      let payload = params['payload'] || '';
+      console.log('payload: ', payload);
+      if (!payload) {
+        
+      } else {
+        this.activateUser(payload);
+      }
+    });
+  }
+
+  activateUser(token) {
+    this.userService.fnHttpSetActivateUser(token, {}).subscribe((responseActive) => {
+      console.log('responseActive: ', responseActive);
+    });
   }
 
   updatePass(new_password: any, confirm_new_password: any) {
 
   }
 
-  fnRedirectPage(time: number) {
-    this.submitted = true;
-    setTimeout(() => {
-      this.router.navigate(['auth/login']);
-    }, time);  // 5s
-  }
+  // fnRedirectPage(time: number) {
+  //   this.submitted = true;
+  //   setTimeout(() => {
+  //     this.router.navigate(['auth/login']);
+  //   }, time);  // 5s
+  // }
 
   // fnGetEmail(token) {
   //   let object_decode_token = this.utilitiesService.fnDecodeToken(token);

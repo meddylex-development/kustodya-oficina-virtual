@@ -6,6 +6,7 @@ import { NgxLoginComponent } from './login/login.component'; // <---
 import { NgxRegisterComponent } from './sign-up/sign-up.component'; // <---
 import { NgxRequestPasswordComponent } from './request-password/request-password.component'; // <---
 import { LogoutComponent } from './sign-out/sign-out.component';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,9 @@ export const routes: Routes = [
       }, {
         path: 'sign-out',
         component: LogoutComponent, // <---
+      }, {
+        path: 'activate-account/:params',
+        component: ActivateAccountComponent, // <---
       },
     ],
   },

@@ -105,6 +105,7 @@ export class NgxLoginComponent extends NbLoginComponent implements OnInit {
           this.router.navigateByUrl(redirect);
         }
         if (result['response']['status'] == 206) {
+          console.log('result["response"]: ', result['response']);
           this.submitted = false;
           this.utilitiesService.showToast('top-right', 'danger', 'Ha ocurrido un error, intentalo nuevamente!');
         }

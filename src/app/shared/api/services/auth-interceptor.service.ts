@@ -36,6 +36,11 @@ export class AuthInterceptorService implements HttpInterceptor {
           this.utilitiesService.showToast('bottom-right', 'danger', "Su sesión ha expirado", 'nb-alert');
         }
 
+        if (err.status === 403) {
+          this.router.navigateByUrl('');
+          this.utilitiesService.showToast('bottom-right', 'danger', "La cuenta no se ha activado aun!", 'nb-alert');
+        }
+
         return throwError(err);
 
       })

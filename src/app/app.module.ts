@@ -61,6 +61,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { ReCaptchaModule } from 'angular-recaptcha3';
+
 export function setReturnDataMessages(module: string, res: HttpResponse<Object>): Object[] { return [res]; }
 export function setReturnDataErrors(module: string, res: HttpErrorResponse): Object[] { return [res]; }
 
@@ -75,6 +77,14 @@ const formSetting: any = {
 @NgModule({
   declarations: [AppComponent, HelpComponent],
   imports: [
+    ReCaptchaModule.forRoot({
+      invisible: {
+          sitekey: '6Lc8wGseAAAAAEU4RbYQR8eqvLC6_XUeq2vZbZxQ', 
+      },
+      normal: {
+          sitekey: '6Lc8wGseAAAAAEU4RbYQR8eqvLC6_XUeq2vZbZxQ', 
+      },
+    }),
     FormsModule,
     BrowserModule,
     NgSelectModule,
@@ -175,7 +185,7 @@ const formSetting: any = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
   ],
 })
 export class AppModule {
