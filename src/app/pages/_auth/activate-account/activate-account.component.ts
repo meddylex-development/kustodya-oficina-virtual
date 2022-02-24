@@ -53,16 +53,48 @@ export class ActivateAccountComponent extends NbResetPasswordComponent implement
       let payload = params['payload'] || '';
       console.log('payload: ', payload);
       if (!payload) {
-        
+        this.utilitiesService.showToast('top-right', 'danger', 'El link es invalido!');
+        this.utilitiesService.fnSignOutUser().then(resp => {
+          this.utilitiesService.fnNavigateByUrl('auth/login');
+        });
       } else {
-        this.activateUser(payload);
+        this.activateUser(payload).then((response) => {
+          if (!response) {
+            this.utilitiesService.showToast('top-right', 'warning', 'El link de activación ha expirado!');
+            this.utilitiesService.fnSignOutUser().then(resp => {
+              this.utilitiesService.fnNavigateByUrl('auth/login');
+            });
+          } else {
+            this.utilitiesService.showToast('top-right', 'success', 'Su cuenta ha sido activada satisfactoriamente!');
+            this.utilitiesService.fnSignOutUser().then(resp => {
+              this.utilitiesService.fnNavigateByUrl('auth/login');
+            });
+          }
+        }).catch((err) => {
+          console.log('err: ', err);
+          this.utilitiesService.showToast('top-right', 'danger', 'El link es invalido!');
+          this.utilitiesService.fnSignOutUser().then(resp => {
+            this.utilitiesService.fnNavigateByUrl('auth/login');
+          });
+        });
       }
     });
   }
 
   activateUser(token) {
-    this.userService.fnHttpSetActivateUser(token, {}).subscribe((responseActive) => {
-      console.log('responseActive: ', responseActive);
+    return new Promise((resolve, reject) => {
+      if (!token) {
+        reject(new Error("Autenticación fallida"));
+      } else {
+        this.userService.fnHttpSetActivateUser(token).subscribe((responseActive) => {
+          console.log('responseActive: ', responseActive);
+          if (!responseActive) {
+            reject(new Error("Error al activar el usuario!"));
+          } else {
+            resolve(responseActive);
+          }
+        });
+      }
     });
   }
 

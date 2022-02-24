@@ -99,7 +99,7 @@ export class UserService {
   }
 
   
-  fnHttpSetActivateUser(token: string, dataObject: any): Observable<any> {
+  fnHttpSetActivateUser(token: string): Observable<any> {
     const headers = this.fnSetDefineTokenAuthorization(token);
     this.urlSetActivateUser = `/api/user/activate-user/${token}`;
     return this.http.get(this.utility.fnGetHost() + this.urlSetActivateUser, 
