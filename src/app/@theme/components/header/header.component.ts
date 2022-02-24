@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public accessIconToggleSidebar: boolean = false;
   public accessLogo: boolean = false;
   public accessModSearch: boolean = false;
+  public accessModProgressBar: boolean = false;
   public accessModEmail: boolean = false;
   public accessModNotifications: boolean = false;
   public accessModPictureProfile: boolean = false;
@@ -59,9 +60,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { id: 1, title: 'Mi perfil', urlComponent: 'auth/sign-out' }, 
     { id: 2, title: 'Cerrar sesión', urlComponent: 'auth/sign-out' },
   ];
+
+  progressBarMenu = [ 
+    { id: 1, title: 'Completar perfil', urlComponent: 'auth/sign-out' }, 
+    // { id: 2, title: 'Cerrar sesión', urlComponent: 'auth/sign-out' },
+  ];
   // items: Observable<any[]>;
   permissions: any = null;
   language: string = '';
+
+  value = 36;
 
   constructor(
     private router: Router,
@@ -144,6 +152,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.accessModEmail = dataAccess['modEmail']['state'];
       this.accessModNotifications = dataAccess['modNotifications']['state'];
       this.accessModPictureProfile = dataAccess['modPictureProfile']['state'];
+      this.accessModProgressBar = dataAccess['modProgressBar']['state'];
     }).catch((error) => {
       console.log('error: ', error);
     });
@@ -198,6 +207,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.router.navigateByUrl('auth/sign-out');
         });
         break;
+    }
+  }
+
+  setValue(newValue) {
+    this.value = Math.min(Math.max(newValue, 0), 100)
+  }
+
+  get status() {
+    if (this.value <= 25) {
+      return 'danger';
+    } else if (this.value <= 50) {
+      return 'warning';
+    } else if (this.value <= 75) {
+      return 'info';
+    } else {
+      return 'success';
     }
   }
 }

@@ -19,6 +19,13 @@
 <div class="header-container">
   <nb-actions size="small">
 
+    <nb-action *ngIf="accessModProgressBar">
+      <span class="cursor-pointer" [nbContextMenu]="progressBarMenu" nbTooltip="Completa tu perfil para transcribir incapacidad:  {{ value }}%" nbTooltipPlacement="bottom">
+        <small style="width: 100%;">Perfil completado: {{value}}%</small>
+        <nb-progress-bar style="width: 100% !important; height: 10px;" [value]="value" [status]="status"></nb-progress-bar>
+      </span>
+    </nb-action>
+
     <nb-action>
       <span class="header-container cursor-pointer" nbTooltip="Lenguaje {{ language }}" nbTooltipPlacement="bottom">
         <img src="../../../../assets/icons/flags/flag-{{ language.toLowerCase() }}.png" width="20" height="20" alt="language-{{ language }}">

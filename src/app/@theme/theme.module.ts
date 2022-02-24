@@ -13,6 +13,8 @@ import {
   NbIconModule,
   NbThemeModule,
   NbTooltipModule,
+  NbProgressBarModule,
+  NbPopoverModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -42,6 +44,8 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
 
 const NB_MODULES = [
+  NbPopoverModule,
+  NbProgressBarModule,
   NbTooltipModule,
   NbLayoutModule,
   NbMenuModule,

@@ -37,6 +37,7 @@ import {
   NbActionsModule,
   NbButtonModule,
   NbInputModule,
+  NbProgressBarModule,
 } from '@nebular/theme';
 import { 
   NbPasswordAuthStrategy, 
@@ -85,6 +86,7 @@ const formSetting: any = {
           sitekey: '6Lc8wGseAAAAAEU4RbYQR8eqvLC6_XUeq2vZbZxQ', 
       },
     }),
+    NbProgressBarModule,
     FormsModule,
     BrowserModule,
     NgSelectModule,

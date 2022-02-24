@@ -27,6 +27,10 @@
     padding: 0!important;
   }
 
+  ::ng-deep .progress-container {
+    height: 10px !important;
+  }
+
   ::ng-deep .nb-theme-default nb-card-header {
     display: block !important;
   }
