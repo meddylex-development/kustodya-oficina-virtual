@@ -20,7 +20,8 @@ import { ProfileModule } from './profile/profile.module';
 import { DocumentTypeModule } from './document-type/document-type.module';
 import { CountryModule } from './country/country.module';
 import { CityModule } from './city/city.module';
-
+import { MenuModule } from './menu/menu.module';
+import { MenuProfileModule } from './menu-profile/menu-profile.module';
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -39,6 +40,8 @@ import { CityModule } from './city/city.module';
     DocumentTypeModule,
     CountryModule,
     CityModule,
+    MenuModule,
+    MenuProfileModule,
   ],
   declarations: [
     PagesComponent,

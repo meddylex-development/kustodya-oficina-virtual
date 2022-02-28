@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserData,
     private breakpointService: NbMediaBreakpointsService,
     private utilitiesService: UtilitiesService,
-    ) {
+  ) {
     }
     
     ngOnInit() {
@@ -93,35 +93,71 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.selectOptionMenu(idItemMenu);
       });
 
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => {
-        this.user = users.nick;
+      this.userService.getUsers()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((users: any) => {
+          this.user = users.nick;
       });
 
-    this.utilitiesService.fnGetLocalStorage('userData').then(resp => {
-      let user = JSON.parse(resp);
-      this.user = { 
-        name: this.utilitiesService.fnCapitalizeText(user['firstName']) + ' ' + this.utilitiesService.fnCapitalizeText(user['lastName']), 
-        picture: 'assets/images/nick.png' 
-      };
-    });
+      this.utilitiesService.fnGetLocalStorage('userData').then(resp => {
+        let user = JSON.parse(resp);
+        console.log('user: ', user);
+        let dataUserComplete = 0;
+        if (user['acceptTerms']) {
+          dataUserComplete = dataUserComplete + 5;
+        }
+        if (user['address']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['birthDate']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['captcha']) {
+          dataUserComplete = dataUserComplete + 5;
+        }
+        if (user['documentNumber']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['email']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['firstName']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['lastName']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['phoneNumber']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['secondFirstName']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['secondLastName']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        console.log('dataUserComplete ===>>>>>>>> ', dataUserComplete);
+        
+        this.user = { 
+          name: this.utilitiesService.fnCapitalizeText(user['firstName']) + ' ' + this.utilitiesService.fnCapitalizeText(user['lastName']), 
+          picture: 'assets/images/nick.png' 
+        };
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+      });
 
-    this.themeService.onThemeChange()
-      .pipe(
-        map(({ name }) => name),
-        takeUntil(this.destroy$),
-      )
-      .subscribe(themeName => this.currentTheme = themeName);
+      const { xl } = this.breakpointService.getBreakpointsMap();
+      this.themeService.onMediaQueryChange()
+        .pipe(
+          map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+          takeUntil(this.destroy$),
+        )
+        .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
 
+      this.themeService.onThemeChange()
+        .pipe(
+          map(({ name }) => name),
+          takeUntil(this.destroy$),
+        ).subscribe(themeName => this.currentTheme = themeName);
   }
 
   fnGetDataAccess() {

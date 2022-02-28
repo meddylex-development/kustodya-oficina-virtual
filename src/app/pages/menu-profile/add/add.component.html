@@ -1,0 +1,87 @@
+<nb-card>
+  <nb-card-header style="display: flex; justify-content: space-between;">
+      {{ DATA_LANG?.mdlAddTitle?.text }}
+      <span (click)="fnCloseModal()" nbTooltip="Cerrar">
+          <i class="fas fa-times cursor-pointer text-danger"></i>
+      </span>
+  </nb-card-header>
+  <nb-card-body>
+      <div class="row ml-0 mr-0">
+          <form (ngSubmit)="fnAddData(addMenuProfileForm)" style="width: 350px;" #addMenuProfileForm="ngForm" aria-labelledby="title">
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="select-profile">{{ DATA_LANG?.lblColProfile?.text }}Perfil:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                <ng-select 
+                  [items]="collectionProfileList" 
+                  bindValue="_id"
+                  bindLabel="name"
+                  id="select-profile" 
+                  name="profile" 
+                  #profile="ngModel"
+                  placeholder="Seleccione el país" 
+                  [(ngModel)]="menuProfile.profile" 
+                  (change)="fnSetProfile($event);"
+                  required 
+                  [disabled]="false" 
+                  [clearable]="false">
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="select-menuProfileState">{{ DATA_LANG?.mdlLblAddStatusMenuProfile?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                <ng-select 
+                  [items]="collectionMenusList" 
+                  bindValue="_id"
+                  bindLabel="title"
+                  id="select-menuProfileState" 
+                  name="menuProfileState" 
+                  #menuProfileState="ngModel"
+                  placeholder="Seleccione el estado" 
+                  [(ngModel)]="menuProfile.state" 
+                  (change)="fnSetStatusMenuProfile($event);"
+                  required 
+                  [disabled]="false" 
+                  [clearable]="false">
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-12 pl-0 pr-0">
+              <div class="form-group">
+                <label for="input-menuProfileDescription">{{ DATA_LANG?.mdlLblAddDescription?.text }}:&nbsp;&nbsp;<span class="text-danger cursor-pointer" nbTooltip="{{ DATA_LANG_GENERAL?.lblObligatoryFieldTooltip?.text }}">*</span></label>
+                  <textarea 
+                      #menuProfileDescription="ngModel"
+                      [(ngModel)]="menuProfile.description" 
+                      [ngModelOptions]="{standalone: true}"
+                      [status]="'info'"
+                      class="form-control" 
+                      name="menuProfileDescription" 
+                      id="input-menuProfileDescription" 
+                      nbInput 
+                      fullWidth 
+                      placeholder="{{ DATA_LANG?.phlInputdAddDesc?.text }}">
+                  </textarea>
+              </div>
+            </div>
+            <br>
+            <button 
+                nbButton 
+                fullWidth 
+                type="submit"
+                [class.btn-pulse]="submitted"
+                style="background-color: #3366ff; border-color: #3366ff; color: white;">
+                {{ DATA_LANG_GENERAL?.lblButtonSave?.text }}
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button 
+                nbButton 
+                fullWidth
+                status="info" 
+                style="background-color: gray; border-color: gray; color: white;"
+                (click)="fnCancelAddData()">
+                {{ DATA_LANG_GENERAL?.lblButtonCancel?.text }}
+            </button>
+          </form>
+        </div>
+  </nb-card-body>
+</nb-card>

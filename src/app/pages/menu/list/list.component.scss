@@ -1,0 +1,53 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+// @import '../../styles/themes';
+// @import "~@theme/theme/styles/themes";
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    ::ng-deep .cursor-pointer {
+        cursor: pointer;
+    }
+
+    ::ng-deep .nb-theme-default nb-card-header {
+        display: block !important;
+    }
+    
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    ::ng-deep .ngx-pagination > li.current {
+        border-radius: 15px;
+    }
+
+    .content-card {
+        width: 100%;
+    }
+
+    .icon-help-title {
+        width: 1.2rem;
+    }
+
+    .btn-delete-all {
+        background-color: #dc3545 !important; 
+        color: #fff;
+    }
+
+    .thead-column-action {
+        width: 40px;
+    }
+
+    .icon-help-thead {
+        width: 1.2rem;
+    }
+
+    .content-pagination {
+        display: flex; 
+        justify-content: space-around;
+    }
+}

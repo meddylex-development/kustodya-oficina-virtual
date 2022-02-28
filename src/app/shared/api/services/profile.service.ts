@@ -18,6 +18,7 @@ export class ProfileService {
   urlSetEditProfile: string = '';
   urlSetDeleteProfile: string = '';
   urlSetDeleteAllProfile: string = '';
+  urlGetProfileListById: string = '';
 
   constructor(
     public http: HttpClient, 
@@ -38,6 +39,17 @@ export class ProfileService {
         headers: headers,
         reportProgress: true,
       });
+  }
+ 
+  fnHttpGetProfileListById(token: string, profile_id: any): Observable<any> {
+    const headers = this.fnSetDefineTokenAuthorization(token);
+    this.urlGetProfileListById = '/api/profile-by-id/' + profile_id;
+    return this.http.post(this.utility.fnGetHost() + this.urlGetProfileListById, profile_id, 
+    {
+      observe: 'response',
+      headers: headers,
+      reportProgress: true,
+    });
   }
 
   fnHttpSetAddNewProfile(token: string, dataObject: any): Observable<any> {

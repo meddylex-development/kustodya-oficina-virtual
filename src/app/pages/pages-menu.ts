@@ -1,5 +1,6 @@
 import { NbMenuItem } from '@nebular/theme';
 
+export const MENU_ITEMS_1: NbMenuItem[] = [];
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
@@ -13,34 +14,40 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Home',
-    icon: 'home-outline',
+    icon: { icon: 'user', pack: 'fas' },
     link: '/pages/home',
   },
   {
     title: 'Estados',
-    icon: 'home-outline',
+    icon: { icon: 'user', pack: 'fas' },
     link: '/pages/state',
   },
   {
     title: 'Perfiles',
-    icon: 'home-outline',
+    icon: { icon: 'user', pack: 'fas' },
     link: '/pages/profile',
   },
   {
     title: 'Tipos de documento',
-    icon: 'home-outline',
+    icon: { icon: 'user', pack: 'fas' },
     link: '/pages/document-type',
   },
   {
     title: 'Paises',
-    icon: 'home-outline',
+    icon: { icon: 'user', pack: 'fas' },
     link: '/pages/country',
   },
   {
     title: 'Ciudades',
-    icon: 'home-outline',
+    icon: { icon: 'user', pack: 'fas' },
     link: '/pages/city',
   },
+  {
+    title: 'Menús',
+    icon: { icon: 'user', pack: 'fas' },
+    link: '/pages/menu',
+  },
+
   // {
   //   title: 'Auth',
   //   icon: 'lock-outline',

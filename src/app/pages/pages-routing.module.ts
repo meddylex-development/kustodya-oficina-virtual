@@ -10,6 +10,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { DocumentTypeComponent } from './document-type/document-type.component';
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
+import { MenuComponent } from './menu/menu.component';
+import { MenuProfileComponent } from './menu-profile/menu-profile.component';
 
 const routes: Routes = [{
   path: '',
@@ -43,6 +45,14 @@ const routes: Routes = [{
       path: 'city',
       // canActivate: [AuthGuard],
       component: CityComponent,
+    }, {
+      path: 'menu',
+      // canActivate: [AuthGuard],
+      component: MenuComponent,
+    }, {
+      path: 'menu-profile',
+      // canActivate: [AuthGuard],
+      component: MenuProfileComponent,
     }, {
       path: '',
       redirectTo: 'dashboard',
