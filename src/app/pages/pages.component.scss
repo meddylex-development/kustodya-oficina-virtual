@@ -16,6 +16,11 @@
     }
   }
 
+  ::ng-deep h1, h2, h3, h4, h5, h6 {
+    font-family: 'Exo';
+    font-weight: 500;
+  }
+
   ::ng-deep menu {
     padding: 0 !important;
     margin: 0 !important;

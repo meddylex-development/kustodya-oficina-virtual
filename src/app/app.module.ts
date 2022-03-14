@@ -38,6 +38,7 @@ import {
   NbButtonModule,
   NbInputModule,
   NbProgressBarModule,
+  // NbSpinnerModule,
 } from '@nebular/theme';
 import { 
   NbPasswordAuthStrategy, 
@@ -78,6 +79,7 @@ const formSetting: any = {
 @NgModule({
   declarations: [AppComponent, HelpComponent],
   imports: [
+    // NbSpinnerModule,
     ReCaptchaModule.forRoot({
       invisible: {
           sitekey: '6Lc8wGseAAAAAEU4RbYQR8eqvLC6_XUeq2vZbZxQ', 

@@ -19,9 +19,9 @@
 <div class="header-container">
   <nb-actions size="small">
 
-    <nb-action *ngIf="accessModProgressBar">
-      <span class="cursor-pointer" [nbContextMenu]="progressBarMenu" nbTooltip="Completa tu perfil para transcribir incapacidad:  {{ value }}%" nbTooltipPlacement="bottom">
-        <small style="width: 100%;">Perfil completado: {{value}}%</small>
+    <nb-action *ngIf="accessModProgressBar && value < 91">
+      <span class="cursor-pointer" [nbContextMenu]="progressBarMenu">
+        <small style="width: 100%;" nbTooltip="Completa tu perfil para transcribir incapacidad:  {{ value }}%" nbTooltipPlacement="bottom">Perfil completado: {{value}}%</small>
         <nb-progress-bar style="width: 100% !important; height: 10px;" [value]="value" [status]="status"></nb-progress-bar>
       </span>
     </nb-action>

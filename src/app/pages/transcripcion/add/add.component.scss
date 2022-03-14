@@ -1,0 +1,95 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../../@theme/styles/themes';
+// @import '../../styles/themes';
+// @import "~@theme/theme/styles/themes";
+
+@include nb-install-component() {
+
+    ::ng-deep .ng-select .ng-select-container {
+        border-color: none !important;
+        height: 54px !important;
+    }
+
+    ::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input>input {
+        height: 44px;
+    }
+
+    ::ng-deep nb-card-header {
+        display: block !important;
+    }
+
+    ::ng-deep .cursor-pointer {
+        cursor: pointer;
+    }
+
+    
+    ::ng-deep h1, h2, h3, h4, h5, h6 {
+        font-family: 'Exo';
+        font-weight: 500;
+    }
+
+    ::ng-deep a.btn-link {
+        color: #3366ff !important;
+        text-decoration: underline !important;
+    }
+
+    ::ng-deep .bs-timepicker-field {
+        width: 65px;
+        padding: 0.375rem 0.55rem;
+        height: 48.48px !important;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    h5 {
+        font-family: 'Exo';
+        font-weight: 500;
+    }
+
+
+    .file-drop-area {
+        // position: relative;
+        // display: flex;
+        // align-items: center;
+        // width: 450px;
+        // max-width: 100%;
+        padding: 25px;
+        border: 1px dashed #dfdfdf;
+        border-radius: 3px;
+        transition: 0.2s
+    }
+
+    .choose-file-button {
+        flex-shrink: 0;
+        background-color: #c5c2c2;
+        border: 1px solid #dfdfdf;
+        border-radius: 3px;
+        padding: 8px 15px;
+        margin-right: 10px;
+        font-size: 12px;
+        text-transform: uppercase
+    }
+    
+    .file-message {
+        font-size: small;
+        font-weight: 300;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+    }
+    
+    .file-input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0
+    }
+
+}

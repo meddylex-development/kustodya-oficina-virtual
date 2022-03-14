@@ -28,6 +28,12 @@ export class PagesComponent implements OnInit {
       home: true,
     },
     {
+      title: 'Mi perfil',
+      icon: { icon: 'address-book' , pack: 'fas' },
+      link: '/pages/my-profile',
+      home: false,
+    },
+    {
       title: 'FEATURES',
       group: true,
     },

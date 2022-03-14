@@ -7,6 +7,7 @@ export const environment = {
   production: true,
   // apiUrl: 'http://meddylex-001-site1.itempurl.com',
   apiUrl: 'http://localhost:3001',
+  apiUrlKustodya: 'http://meddylex-001-site1.itempurl.com',
   firebase: {
     apiKey: "AIzaSyBsZneAtAa52L5UkPe7bQlP9sVbq--Wc0M",
     authDomain: "baseparkway-stemcell.firebaseapp.com",

@@ -12,6 +12,11 @@ import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuProfileComponent } from './menu-profile/menu-profile.component';
+import { UserComponent } from './user/user.component';
+import { AddComponent } from './user/add/add.component';
+import { EditComponent } from './user/edit/edit.component';
+import { TranscripcionComponent } from './transcripcion/transcripcion.component';
+import { AddTranscriptionComponent } from './transcripcion/add/add.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +26,24 @@ const routes: Routes = [{
       path: 'home',
       // canActivate: [AuthGuard],
       component: DashboardComponent,
+    }, {
+      path: 'user',
+      // canActivate: [AuthGuard],
+      // component: UserComponent,
+      children: [
+        {
+          path: 'list',
+          component: UserComponent,
+        },
+        {
+          path: 'add-user',
+          component: AddComponent,
+        },
+        {
+          path: 'edit-user',
+          component: EditComponent,
+        },
+      ]
     }, {
       path: 'dashboard',
       // canActivate: [AuthGuard],
@@ -53,6 +76,20 @@ const routes: Routes = [{
       path: 'menu-profile',
       // canActivate: [AuthGuard],
       component: MenuProfileComponent,
+    }, {
+      path: 'transcripcion',
+      // canActivate: [AuthGuard],
+      // component: MenuProfileComponent,
+      children: [
+        {
+          path: 'lista-transcripciones',
+          component: TranscripcionComponent,
+        },
+        {
+          path: 'transcribir-incapacidad',
+          component: AddTranscriptionComponent,
+        },
+      ]
     }, {
       path: '',
       redirectTo: 'dashboard',

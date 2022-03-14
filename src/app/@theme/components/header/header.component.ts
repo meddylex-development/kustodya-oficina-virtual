@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   permissions: any = null;
   language: string = '';
 
-  value = 36;
+  value = 0;
 
   constructor(
     private router: Router,
@@ -104,18 +104,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.log('user: ', user);
         let dataUserComplete = 0;
         if (user['acceptTerms']) {
-          dataUserComplete = dataUserComplete + 5;
+          dataUserComplete = dataUserComplete + 1;
         }
         if (user['address']) {
-          dataUserComplete = dataUserComplete + 10;
+          dataUserComplete = dataUserComplete + 1;
         }
         if (user['birthDate']) {
-          dataUserComplete = dataUserComplete + 10;
+          dataUserComplete = dataUserComplete + 1;
         }
         if (user['captcha']) {
-          dataUserComplete = dataUserComplete + 5;
+          dataUserComplete = dataUserComplete + 1;
         }
         if (user['documentNumber']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['documentDateExpedition']) {
+          dataUserComplete = dataUserComplete + 10;
+        }
+        if (user['idDocumentType']) {
           dataUserComplete = dataUserComplete + 10;
         }
         if (user['email']) {
@@ -131,12 +137,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
           dataUserComplete = dataUserComplete + 10;
         }
         if (user['secondFirstName']) {
-          dataUserComplete = dataUserComplete + 10;
+          dataUserComplete = dataUserComplete + 1;
         }
         if (user['secondLastName']) {
-          dataUserComplete = dataUserComplete + 10;
+          dataUserComplete = dataUserComplete + 1;
         }
-        console.log('dataUserComplete ===>>>>>>>> ', dataUserComplete);
+        console.log('dataUserComplete: ', dataUserComplete);
+
+        // 76 = 100%
+        // 74 = ?
+        // 74 x 100 / 76
+
+        let respuesta = (dataUserComplete * 100) / 76;
+        console.log('respuesta: ', respuesta);
+        this.value = Math.round(respuesta);
+        console.log('this.value: ', this.value);
+        // this.value = respuesta;
+        
         
         this.user = { 
           name: this.utilitiesService.fnCapitalizeText(user['firstName']) + ' ' + this.utilitiesService.fnCapitalizeText(user['lastName']), 
@@ -251,12 +268,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   get status() {
-    if (this.value <= 25) {
+    if (this.value <= 50) {
       return 'danger';
-    } else if (this.value <= 50) {
+    } else if (this.value <= 91) {
       return 'warning';
-    } else if (this.value <= 75) {
-      return 'info';
+    // } else if (this.value <= 75) {
+    //   return 'info';
     } else {
       return 'success';
     }

@@ -6,6 +6,7 @@ import {
   NbActionsModule,
   NbButtonModule,
   NbInputModule,
+  NbSpinnerModule,
 } from '@nebular/theme';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -22,8 +23,12 @@ import { CountryModule } from './country/country.module';
 import { CityModule } from './city/city.module';
 import { MenuModule } from './menu/menu.module';
 import { MenuProfileModule } from './menu-profile/menu-profile.module';
+import { UserModule } from './user/user.module';
+import { TranscripcionModule } from './transcripcion/transcripcion.module';
+
 @NgModule({
   imports: [
+    // NbSpinnerModule,
     PagesRoutingModule,
     NgxPaginationModule,
     ThemeModule,
@@ -42,6 +47,8 @@ import { MenuProfileModule } from './menu-profile/menu-profile.module';
     CityModule,
     MenuModule,
     MenuProfileModule,
+    UserModule,
+    TranscripcionModule,
   ],
   declarations: [
     PagesComponent,

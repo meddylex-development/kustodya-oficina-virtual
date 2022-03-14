@@ -18,6 +18,8 @@ export class UtilitiesService {
   private index: number = 0;
   private dataFB: any = null;
   public token: string = '';
+  public dataShare: any = null;
+  public dataShareOrigin: any = null;
 
   constructor(
     private router: Router,
@@ -423,6 +425,22 @@ export class UtilitiesService {
         reject(false);
       }
     });
+  }
+
+  fnSetDataShare(data, originMod?) {
+    if (originMod) {
+      this.dataShareOrigin = data;
+    } else {
+      this.dataShare = data;
+    }
+  }
+
+  fnGetDataShare(originMod?) {
+    if (originMod) {
+      return this.dataShareOrigin;
+    } else {
+      return this.dataShare;
+    }
   }
 
   fnNavigateByUrl(url: string) {

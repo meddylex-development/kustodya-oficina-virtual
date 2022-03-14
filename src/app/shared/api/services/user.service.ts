@@ -42,6 +42,19 @@ export class UserService {
       });
   }
 
+  
+  fnHttpGetDataUserById(token: string, dataObject: any, id:any): Observable<any> {
+    // this.urlSetEditUser = 'estado/editarEstado/' + id ;
+    const headers = this.fnSetDefineTokenAuthorization(token);
+    this.urlSetEditUser = `/api/user/data-user/${id}`;
+    return this.http.post(this.utility.fnGetHost() + this.urlSetEditUser, dataObject, 
+    {
+      observe: 'response',
+      headers: headers,
+      reportProgress: true,
+    });
+  }
+
   fnHttpSetAddNewUser(token: string, dataObject: any): Observable<any> {
     const headers = this.fnSetDefineTokenAuthorization(token);
     this.urlSetAddNewUser = '/api/user/sign-up';
